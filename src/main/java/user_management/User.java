@@ -6,7 +6,7 @@ public class User {
     String email;
     int id;
     String name;
-    Password password;
+    private Password password;
 
 
 
@@ -53,10 +53,12 @@ public class User {
     }
 
     public Password getPassword() {
+
         return password;
     }
 
     public void setPassword(Password password) {
+
         this.password = password;
     }
 

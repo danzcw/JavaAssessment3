@@ -1,5 +1,7 @@
 package parsing_json;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,52 +9,45 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import com.google.gson.Gson;
 
 public class ElementCollectionInitializer {
 
-    //Gson gson = new Gson();
+    ArrayList<Element> periodicTableList = new ArrayList<>();
 
 
+    public ArrayList<String> parseJsonFromGson() throws FileNotFoundException {
+        Gson gson = new Gson();
+        BufferedReader br = null;
 
-    public static ElementCollection generate() {
+        try {
+            br = new BufferedReader(new FileReader("periodic_table.json"));
+            Element element = gson.fromJson(br, Element.class);
+            if (element != null) {
 
-
-
-
+            }
+        } catch (FileNotFoundException e){
+        }
         return null;
     }
-}
 
-//    private Matcher matcher;
-//    private Pattern pattern;
-//    public int count = 0;
-//    Main main = new Main();
-//    private Map<String, ArrayList<Item>> groceryList = new HashMap<String, ArrayList<Item>>();
-//
-//    public ArrayList<String> parseRawDataIntoStringArray(String rawData) {
-//        String stringPattern = "##";
-//        ArrayList<String> response = splitStringWithRegexPattern(stringPattern, rawData);
-//        return response;
-//    }
-//
-//    public Item parseStringIntoItem(String rawItem) throws ItemParseException {
-//        String name = changeAny0(rawItem);
-//        Double price = findPrice(rawItem);
-//        String type = findType(rawItem);
-//        String expiration = findExpirationDate(rawItem);
-//
-//        if (changeAny0(rawItem) == null || findPrice(rawItem) == 0.0) {
-//            throw new ItemParseException();
-//        }
-//
-//        return new Item(name, price, type, expiration);
-//    }
-//
-//    public ArrayList<String> findKeyValuePairsInRawItemData(String rawItem) {
-//        String stringPattern = "[;|^]";
-//        ArrayList<String> response = splitStringWithRegexPattern(stringPattern, rawItem);
-//        return response;
-//    }
-//
-//    private ArrayList<String> splitStringWithRegexPattern(String stringPattern, String inputString) {
-//        return new ArrayList<String>(Arrays.asList(inputString.split(stringPattern)));
+        public ArrayList<String> parseJsonToStringArrayList (String text){
+            String stringPattern = "";
+            ArrayList<String> tableString = splitStringTableWithRegex(stringPattern, text);
+            return tableString;
+
+        }
+
+        private ArrayList<String> splitStringTableWithRegex (String stringPattern, String inputString){
+            return new ArrayList<String>(Arrays.asList(inputString.split(stringPattern)));
+        }
+
+        public static ElementCollection generate () {
+
+
+            return null;
+        }
+    }
+
+
+
